@@ -15,20 +15,23 @@ public class AppPoint {
 
     // ==생성 메소드==//
     public static AppPoint accumulate(Order order, AccumulatePolicy accumulatePolicy, PointValidator pointValidator) {
-        BigDecimal amount = order.calculateAccumulatedPoint(accumulatePolicy);
-        AppPoint appPoint = new AppPoint(order.getOrdererId(), amount);
+        AppPoint appPoint = new AppPoint(order, accumulatePolicy);
         pointValidator.validate(appPoint, order);
 
         return appPoint;
     }
 
-    private AppPoint(long userId, BigDecimal point) {
-        this.userId = userId;
-        this.point = point;
+    private AppPoint(Order order, AccumulatePolicy accumulatePolicy) {
+        this.userId = order.getOrdererId();
+        this.point = order.calculateAccumulatedPoint(accumulatePolicy);
     }
     // ==비즈니스 로직==//
     public boolean isEmpty() {
         return point.compareTo(BigDecimal.ZERO) == 0;
+    }
+
+    public boolean isSameOwn(Order order) {
+        return this.userId == order.getOrdererId();
     }
 
     // ==조회 로직==//

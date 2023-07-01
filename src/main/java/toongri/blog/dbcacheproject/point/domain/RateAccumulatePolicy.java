@@ -24,8 +24,8 @@ public class RateAccumulatePolicy implements AccumulatePolicy{
 
     // ==비즈니스 로직==//
     @Override
-    public BigDecimal getAccumulatedPoint(Order order) {
-        return accrualRate.multiply(order.getTotalPrice());
+    public BigDecimal getAccumulatedPoint(BigDecimal totalPrice) {
+        return accrualRate.multiply(totalPrice);
     }
     // ==조회 로직==//
 }

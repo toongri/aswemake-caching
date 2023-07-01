@@ -4,6 +4,6 @@ import java.math.BigDecimal;
 
 public interface AccumulatePolicy {
 
-    BigDecimal getAccumulatedPoint(Order order);
+    BigDecimal getAccumulatedPoint(BigDecimal totalPrice);
 
 }

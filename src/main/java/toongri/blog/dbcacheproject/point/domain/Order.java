@@ -27,7 +27,7 @@ public class Order {
     // ==비즈니스 로직==//
 
     public BigDecimal calculateAccumulatedPoint(AccumulatePolicy accumulatePolicy) {
-        return accumulatePolicy.getAccumulatedPoint(this);
+        return accumulatePolicy.getAccumulatedPoint(this.totalPrice);
     }
 
     public boolean isPayed() {
@@ -42,9 +42,5 @@ public class Order {
 
     public long getOrdererId() {
         return ordererId;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
     }
 }
